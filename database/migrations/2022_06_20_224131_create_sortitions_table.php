@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nickname', 200);
             $table->text('description')->nullable();
             $table->boolean('performed')->default(false);
+            $table->string('type', 200)->default('');
             $table->timestamps();
             $table->softDeletes();
 
