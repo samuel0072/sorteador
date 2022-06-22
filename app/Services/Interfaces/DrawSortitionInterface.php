@@ -13,7 +13,8 @@ interface DrawSortitionInterface
      *
      * @param Sortition $sortition O sorteio
      * @param Collection $entries As entradas a serem consideradas
+     * @param array $options Opções referentes ao modo do sorteio ser executado
      * @return SortitionEntry A entrada sorteada
      */
-    public function drawSortition(Sortition $sortition, Collection $entries): SortitionEntry;
+    public function drawSortition(Sortition $sortition, Collection $entries, array $options): SortitionEntry;
 }

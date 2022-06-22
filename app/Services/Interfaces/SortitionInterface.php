@@ -47,9 +47,10 @@ interface SortitionInterface
 
     /**
      * Executa um sorteio
-     * 
+     *
      * @param Sortition $sortition O sorteio a ser executado
-     * @return SortitionEntry A entrada sorteada
+     * @param array $options Opções referentes ao modo que o sorteio vai ser executado
+     * @return Collection Uma coleção contendo as entradas sorteadas
      */
-    public function executeSortition(Sortition $sortition): SortitionEntry;
+    public function executeSortition(Sortition $sortition, array $options): Collection;
 }
