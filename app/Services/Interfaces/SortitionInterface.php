@@ -38,11 +38,10 @@ interface SortitionInterface
     /**
      * Remove uma entrada de um sorteio
      *
-     * @param Sortition $sortition O sorteio
      * @param SortitionEntry $entry A entrada a ser removida
      * @return bool Se a entrada foi removida ou não
      */
-    public function removeEntryToSortition(Sortition $sortition, SortitionEntry $entry): bool;
+    public function removeSortitionEntry(SortitionEntry $entry): bool;
 
 
     /**
