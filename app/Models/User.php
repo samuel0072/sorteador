@@ -13,13 +13,6 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'uuid';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

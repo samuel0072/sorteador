@@ -14,12 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sortition_entries', function (Blueprint $table) {
-            $table->uuid();
+            $table->id();
             $table->string('value', 200);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->primary('uuid');
         });
     }
 
