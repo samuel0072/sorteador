@@ -38,5 +38,5 @@ class SortitionEntry extends Model
      *
      * @var array
      */
-    protected $fillable = ['value'];
+    protected $fillable = ['value', 'sortition_id'];
 }

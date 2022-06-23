@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sortition_entries', function (Blueprint $table) {
             $table->id();
             $table->string('value', 200);
+            $table->bigInteger('sortition_id');
             $table->timestamps();
             $table->softDeletes();
         });
