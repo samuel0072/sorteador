@@ -27,13 +27,13 @@ interface SortitionInterface
     public function editSortition(Sortition $sortition, array $data): Sortition;
 
     /**
-     * Adiciona uma entrada para um sorteio
+     * Adiciona entradas para um sorteio
      *
      * @param Sortition $sortition O sorteio
-     * @param SortitionEntry $entry A entrada para ser adicionada
-     * @return SortitionEntry A entrada adicionada
+     * @param Collection $entries As entradas
+     * @return Collection A entrada adicionada
      */
-    public function addEntryToSortition(Sortition $sortition, SortitionEntry $entry): SortitionEntry;
+    public function addEntriesToSortition(Sortition $sortition, Collection $entries): Collection;
 
     public function deleteSortition(Sortition $sortition): bool;
 

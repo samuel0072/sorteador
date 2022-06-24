@@ -47,11 +47,14 @@ class DefaultSortition implements Interfaces\SortitionInterface
     /**
      * @inheritDoc
      */
-    public function addEntryToSortition(Sortition $sortition, SortitionEntry $entry): SortitionEntry
+    public function addEntriesToSortition(Sortition $sortition, Collection $entries): Collection
     {
-        $entry->sortition_id = $sortition->id;
-        $entry->save();
-        return $entry;
+
+        foreach ($entries as $entry) {
+            $entry->sortition_id = $sortition->id;
+            $entry->save();
+        }
+        return $entries;
     }
 
     public function deleteSortition(Sortition $sortition): bool
@@ -68,4 +71,6 @@ class DefaultSortition implements Interfaces\SortitionInterface
     {
         return Sortition::find($id);
     }
+
+
 }
