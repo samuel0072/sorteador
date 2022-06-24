@@ -52,7 +52,7 @@ class SortitionController extends Controller
             "description" => "required|string|max:1000"
         ]);
         $id = $request->input("id");
-        $sortition = Sortition::find($id);
+        $sortition = SortitionFacade::getSortitionById($id);
         $data = [
             "nickname" => $request->input("nickname"),
             "description" => $request->input("description")
@@ -81,5 +81,12 @@ class SortitionController extends Controller
         }
 
         return SortitionFacade::addEntriesToSortition($sortition, $entries);
+    }
+
+    public function getSortitionById(Request $request, int $id): null|Sortition
+    {
+        $sortition = SortitionFacade::getSortitionById($id);
+        $sortition->load("entries");
+        return $sortition;
     }
 }

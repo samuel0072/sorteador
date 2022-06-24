@@ -23,4 +23,6 @@ Route::prefix("sortition")->group(function() {
     Route::post("create", [SortitionController::class, "createSortition"]);
     Route::put("edit", [SortitionController::class, "editSortition"]);
     Route::post("addEntries", [SortitionController::class, "addEntriesToSortition"]);
+    Route::get("/{id}", [SortitionController::class, "getSortitionById"])
+        ->where("id", "[0-9]+");
 });
