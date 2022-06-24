@@ -20,7 +20,7 @@ class SortitionController extends Controller
     public function createSortition(Request $request): array
     {
         $request->validate([
-            "nickname" => "required|string|max:250",
+            "nickname" => "required|string|max:200",
             "description" => "nullable|string|max:1000",
             "entries" => "nullable|array",
             "entries.*.value" => "required|string"
@@ -42,5 +42,21 @@ class SortitionController extends Controller
             "sortition" => SortitionFacade::createSortition($sortition, $entries),
             "entries" => $entries
         ];
+    }
+
+    public function editSortition(Request $request): Sortition
+    {
+        $request->validate([
+            "id" => "required|int|min:0",
+            "nickname" => "required|string|max:200",
+            "description" => "required|string|max:1000"
+        ]);
+        $id = $request->input("id");
+        $sortition = Sortition::find($id);
+        $data = [
+            "nickname" => $request->input("nickname"),
+            "description" => $request->input("description")
+        ];
+        return SortitionFacade::editSortition($sortition, $data);
     }
 }
