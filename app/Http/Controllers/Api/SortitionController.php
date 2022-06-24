@@ -59,4 +59,27 @@ class SortitionController extends Controller
         ];
         return SortitionFacade::editSortition($sortition, $data);
     }
+
+    public function addEntriesToSortition(Request $request): Collection
+    {
+        $request->validate([
+            "sortitionId" => "required|int|min:0",
+            "entries" => "required|array",
+            "entries.*.value" => "required|string|max:200"
+        ]);
+
+        $id = $request->input("sortitionId");
+        $sortition = SortitionFacade::getSortitionById($id);
+
+        $entries = new Collection();
+        $rawEntries = $request->input('entries');
+
+        foreach ($rawEntries as $entry) {
+            $sortitionEntry = new SortitionEntry;
+            $sortitionEntry->value = $entry["value"];
+            $entries->add($sortitionEntry);
+        }
+
+        return SortitionFacade::addEntriesToSortition($sortition, $entries);
+    }
 }
