@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Facades\SortitionEntry as EntryFacade;
 use App\Facades\Sortition as SortitionFacade;
 use App\Http\Controllers\Controller;
 use App\Models\Sortition;
-use App\Models\SortitionEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use JetBrains\PhpStorm\ArrayShape;
@@ -29,14 +29,7 @@ class SortitionController extends Controller
        $sortition->nickname = $request->input("nickname");
        $sortition->description = $request->input("description");
 
-       $entries = new Collection();
-       $rawEntries = $request->input('entries');
-
-       foreach ($rawEntries as $entry) {
-           $sortitionEntry = new SortitionEntry;
-           $sortitionEntry->value = $entry["value"];
-           $entries->add($sortitionEntry);
-       }
+       $entries = EntryFacade::createEntriesCollection($request->input('entries'));
 
        return [
             "sortition" => SortitionFacade::createSortition($sortition, $entries),
@@ -71,14 +64,7 @@ class SortitionController extends Controller
         $id = $request->input("sortitionId");
         $sortition = SortitionFacade::getSortitionById($id);
 
-        $entries = new Collection();
-        $rawEntries = $request->input('entries');
-
-        foreach ($rawEntries as $entry) {
-            $sortitionEntry = new SortitionEntry;
-            $sortitionEntry->value = $entry["value"];
-            $entries->add($sortitionEntry);
-        }
+        $entries = EntryFacade::createEntriesCollection($request->input('entries'));
 
         return SortitionFacade::addEntriesToSortition($sortition, $entries);
     }

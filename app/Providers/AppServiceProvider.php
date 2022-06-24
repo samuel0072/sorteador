@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Services\DefaultSortition;
-use App\Services\GetPreSavedTextEntries;
+use App\Services\SimpleTextEntry;
 use App\Services\Interfaces\DrawSortitionInterface;
-use App\Services\Interfaces\GetEntriesInterface;
+use App\Services\Interfaces\SortitionEntryInterface;
 use App\Services\Interfaces\SortitionInterface;
 use App\Services\SingleEntryDrawSortition;
 use Illuminate\Support\ServiceProvider;
@@ -23,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
             return new DefaultSortition();
         });
 
-        $this->app->bind(GetEntriesInterface::class, function($app) {
-            return new GetPreSavedTextEntries();
+        $this->app->bind(SortitionEntryInterface::class, function($app) {
+            return new SimpleTextEntry();
         });
 
         $this->app->bind(DrawSortitionInterface::class, function($app) {

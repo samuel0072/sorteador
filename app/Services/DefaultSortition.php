@@ -2,12 +2,9 @@
 
 namespace App\Services;
 
-use App\Facades\DrawSortition;
 use App\Models\Sortition;
-use App\Models\SortitionEntry;
 use Exception;
 use Illuminate\Support\Collection;
-use App\Facades\GetEntries;
 use Illuminate\Support\Facades\DB;
 
 class DefaultSortition implements Interfaces\SortitionInterface
