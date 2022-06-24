@@ -89,4 +89,10 @@ class SortitionController extends Controller
         $sortition->load("entries");
         return $sortition;
     }
+
+    public function removeSortition(Request $request, int $id): bool
+    {
+        $sortition = SortitionFacade::getSortitionById($id);
+        return SortitionFacade::deleteSortition($sortition);
+    }
 }

@@ -25,4 +25,6 @@ Route::prefix("sortition")->group(function() {
     Route::post("addEntries", [SortitionController::class, "addEntriesToSortition"]);
     Route::get("/{id}", [SortitionController::class, "getSortitionById"])
         ->where("id", "[0-9]+");
+    Route::delete("/{id}", [SortitionController::class, "removeSortition"])
+        ->where("id", "[0-9]+");
 });
