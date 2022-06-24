@@ -54,21 +54,18 @@ class DefaultSortition implements Interfaces\SortitionInterface
         return $entry;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function removeSortitionEntry(SortitionEntry $entry): bool
+    public function deleteSortition(Sortition $sortition): bool
     {
-        // TODO: Implement removeSortitionEntry() method.
-        return true;
+       $entries = $sortition->entries;
+       foreach ($entries as $entry)
+       {
+           $entry->delete();
+       }
+       return $sortition->delete();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function executeSortition(Sortition $sortition, Collection $suppliedEntries, array $options): Collection
+    public function getSortitionById($id): null|Sortition
     {
-        $entries = GetEntries::getEntries($sortition, $suppliedEntries);
-        return DrawSortition::drawSortition($sortition, $entries, $options);
+        return Sortition::find($id);
     }
 }

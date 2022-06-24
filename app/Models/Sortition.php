@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static Sortition|null find($id)
+ */
 class Sortition extends Model
 {
     use HasFactory;
@@ -49,5 +53,9 @@ class Sortition extends Model
         'performed' => 'boolean',
     ];
 
+    public function entries(): HasMany
+    {
+        return $this->hasMany(SortitionEntry::class, 'sortition_id', 'id');
+    }
 
 }

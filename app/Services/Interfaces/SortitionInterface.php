@@ -35,22 +35,7 @@ interface SortitionInterface
      */
     public function addEntryToSortition(Sortition $sortition, SortitionEntry $entry): SortitionEntry;
 
-    /**
-     * Remove uma entrada de um sorteio
-     *
-     * @param SortitionEntry $entry A entrada a ser removida
-     * @return bool Se a entrada foi removida ou não
-     */
-    public function removeSortitionEntry(SortitionEntry $entry): bool;
+    public function deleteSortition(Sortition $sortition): bool;
 
-
-    /**
-     * Executa um sorteio
-     *
-     * @param Sortition $sortition O sorteio a ser executado
-     * @param Collection $suppliedEntries Entradas informadas
-     * @param array $options Opções referentes ao modo que o sorteio vai ser executado
-     * @return Collection Uma coleção contendo a(s) entrada(s) sorteada(s)
-     */
-    public function executeSortition(Sortition $sortition, Collection $suppliedEntries, array $options): Collection;
+    public function getSortitionById($id): null|Sortition;
 }
