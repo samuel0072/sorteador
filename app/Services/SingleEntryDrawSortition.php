@@ -12,8 +12,11 @@ class SingleEntryDrawSortition implements Interfaces\DrawSortitionInterface
     /**
      * @inheritDoc
      */
-    public function drawSortition(Sortition $sortition, Collection $entries, array $options): Collection
+    public function drawSortition(Sortition $sortition, Collection $entries, array $options = null): Collection
     {
-        // TODO: Implement drawSortition() method.
+        $count = $entries->count();
+        $randIndex = rand(0, $count-1);
+        $result = $entries->get($randIndex);
+        return new Collection([$result]);
     }
 }

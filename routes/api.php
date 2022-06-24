@@ -27,4 +27,6 @@ Route::prefix("sortition")->group(function() {
         ->where("id", "[0-9]+");
     Route::delete("/{id}", [SortitionController::class, "removeSortition"])
         ->where("id", "[0-9]+");
+    Route::post("execute/{id}", [SortitionController::class, "executeSortition"])
+        ->where("id", "[0-9]+");
 });

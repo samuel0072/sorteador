@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Facades\DrawSortition;
 use App\Facades\SortitionEntry as EntryFacade;
 use App\Facades\Sortition as SortitionFacade;
 use App\Http\Controllers\Controller;
@@ -80,5 +81,22 @@ class SortitionController extends Controller
     {
         $sortition = SortitionFacade::getSortitionById($id);
         return SortitionFacade::deleteSortition($sortition);
+    }
+
+    public function executeSortition(Request $request, int $id): Collection
+    {
+        $request->validate([
+            "entries" => "nullable|array",
+            "entries.*.value" => "nullable|string|max:200",
+            "options" => "nullable|array"
+        ]);
+        $sortition = SortitionFacade::getSortitionById($id);
+
+        $suppliedEntries = EntryFacade::createEntriesCollection($request->input('entries'));
+
+        $entries = EntryFacade::getEntries($sortition, $suppliedEntries);
+
+        $options = $request->input("options");
+        return DrawSortition::drawSortition($sortition, $entries, $options);
     }
 }
