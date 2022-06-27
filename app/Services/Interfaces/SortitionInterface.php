@@ -38,4 +38,6 @@ interface SortitionInterface
     public function deleteSortition(Sortition $sortition): bool;
 
     public function getSortitionById($id): null|Sortition;
+
+    public function getAllSortitions(): Collection;
 }

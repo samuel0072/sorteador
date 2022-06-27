@@ -69,5 +69,10 @@ class DefaultSortition implements Interfaces\SortitionInterface
         return Sortition::find($id);
     }
 
+    public function getAllSortitions(): Collection
+    {
+        return Sortition::all();
+    }
+
 
 }

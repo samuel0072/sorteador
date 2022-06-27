@@ -99,4 +99,9 @@ class SortitionController extends Controller
         $options = $request->input("options");
         return DrawSortition::drawSortition($sortition, $entries, $options);
     }
+
+    public function getAllSortitions(): Collection
+    {
+        return SortitionFacade::getAllSortitions();
+    }
 }

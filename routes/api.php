@@ -29,4 +29,5 @@ Route::prefix("sortition")->group(function() {
         ->where("id", "[0-9]+");
     Route::post("execute/{id}", [SortitionController::class, "executeSortition"])
         ->where("id", "[0-9]+");
+    Route::get("all", [SortitionController::class, "getAllSortitions"]);
 });
